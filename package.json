@@ -1,0 +1,82 @@
+{
+  "name": "my-scaffold",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "coverage": "react-scripts test --env=jsdom --coverage --no-cache",
+    "lint": "tsc && tslint -c tslint.json -p tsconfig.json",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "build-storybook": "build-storybook -o .storybook/build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/app/**/*.{js,jsx,ts,tsx}",
+      "!src/app/**/*.story.{js,jsx,ts,tsx}"
+    ]
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "dependencies": {
+    "axios": "^0.18.0",
+    "connected-react-router": "^6.3.1",
+    "history": "^4.7.2",
+    "immutable": "^4.0.0-rc.12",
+    "lodash": "^4.17.11",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "react-router-redux": "^4.0.8",
+    "react-scripts": "2.1.5",
+    "redux": "^4.0.1",
+    "redux-immutable": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "window-or-global": "^1.0.1",
+    "with-immutable-props-to-js": "^1.1.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^4.1.11",
+    "@storybook/addon-actions": "^4.1.11",
+    "@storybook/addon-console": "^1.1.0",
+    "@storybook/addon-knobs": "^4.1.11",
+    "@storybook/addon-options": "^4.1.11",
+    "@storybook/addon-storyshots": "^4.1.11",
+    "@storybook/addon-viewport": "^4.1.11",
+    "@storybook/addons": "^4.1.11",
+    "@storybook/react": "^4.1.11",
+    "@types/enzyme": "^3.1.18",
+    "@types/enzyme-adapter-react-16": "^1.0.4",
+    "@types/jest": "^24.0.4",
+    "@types/lodash": "^4.14.121",
+    "@types/react": "^16.8.3",
+    "@types/react-dom": "^16.8.1",
+    "@types/react-redux": "^7.0.1",
+    "@types/react-router-dom": "^4.3.1",
+    "@types/redux-immutable": "^4.0.1",
+    "@types/storybook__addon-a11y": "^3.3.1",
+    "@types/storybook__addon-knobs": "^4.0.1",
+    "@types/storybook__react": "^4.0.1",
+    "@types/window-or-global": "^1.0.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.9.1",
+    "tslint": "^5.12.1",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.3.3"
+  }
+}
