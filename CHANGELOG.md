@@ -12,3 +12,4 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 * initial scaffold from https://gitlab.com/jblossomweb/crats-redux-framework
 * package name, app title, app description
 * changelog
+* initial firebase deploy pipeline
