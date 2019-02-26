@@ -1,3 +1,4 @@
+import 'antd/dist/antd.css'
 import * as serviceWorker from 'core/serviceWorker'
 import bootstrap from 'core/bootstrap'
 
