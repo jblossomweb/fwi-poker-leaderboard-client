@@ -47,3 +47,18 @@ export interface PostRequest {
     [key: string]: string,
   },
 }
+
+export interface PutRequest {
+  url: string,
+  body: any,
+  headers?: {
+    [key: string]: string,
+  },
+}
+
+export interface DeleteRequest {
+  url: string,
+  headers?: {
+    [key: string]: string,
+  },
+}
