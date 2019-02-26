@@ -1,9 +1,7 @@
 import { RouteProps } from 'react-router-dom'
-import { IconProps } from 'antd/lib/icon'
 
 export interface MenuRoute {
   title: string,
-  icon?: IconProps['type'],
   path: string,
   page?: RouteProps['component'],
   childRoutes?: MenuRoute[]
