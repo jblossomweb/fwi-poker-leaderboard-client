@@ -9,6 +9,9 @@ Lambda API:<br>
 Client:<br>
 [https://fwi-poker-leaderboard.firebaseapp.com/](https://fwi-poker-leaderboard.firebaseapp.com/)<br>
 
+Storybook:<br>
+[https://fwi-poker-storybook.firebaseapp.com/](https://fwi-poker-storybook.firebaseapp.com)
+
 # Quick Start
 
 #### serverless on port 4000
