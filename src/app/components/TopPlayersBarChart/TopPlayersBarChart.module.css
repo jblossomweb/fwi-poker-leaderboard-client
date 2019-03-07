@@ -1,0 +1,42 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list {
+  margin: auto;
+  width: 400px;
+  height: 400px;
+}
+
+.list .item {
+  padding: .5em;
+  margin-bottom: 1.5em;
+}
+
+.list .item .avatar {
+  animation: fadein .5s;
+}
+
+.list .item .name {
+  margin: 0 .5em;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.list .item .winnings {
+  margin: 0 2.5em;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.chart {
+  margin: auto;
+  width: 400px;
+  height: 400px;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

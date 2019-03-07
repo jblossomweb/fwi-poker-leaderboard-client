@@ -1,0 +1,20 @@
+.wrapper {
+  position: relative;
+  z-index: 1;
+  width: 4.5em
+}
+
+.avatar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons {
+  position: absolute !important;
+  top: 3px;
+  left: 0px;
+  z-index: 2;
+  width: 100%;
+}
