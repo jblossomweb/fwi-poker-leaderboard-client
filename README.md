@@ -1,8 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with a work-in-progress [Redux Framework](https://gitlab.com/jblossomweb/crats-redux-framework)
+[Redux Framework](https://gitlab.com/jblossomweb/crats-redux-framework) was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Quick Start
+
+#### server on port 4000
+
+```
+git clone git@github.com:jblossomweb/fwi-poker-leaderboard-serverless.git
+cd fwi-poker-leaderboard-serverless
+npm install && npm start
+```
+
+#### client on port 3000
+
+```
+git clone git@gitlab.com:jblossomweb/fwi-poker-leaderboard-client.git
+cd fwi-poker-leaderboard-client
+npm install && npm start
+```
+
+#### storybook on port 9001
+
+```
+npm run storybook
+```
+
+#### test runner
+
+```
+npm test
+```
+
+## All Available Scripts
 
 In the project directory, you can run:
+
+### `npm install` / `yarn`
+
+Install dependencies.<br>
+Do this first.
+
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
 ### `npm start` / `yarn start`
 
