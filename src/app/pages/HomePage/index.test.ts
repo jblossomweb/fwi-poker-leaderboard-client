@@ -1,3 +1,4 @@
+import 'jest-canvas-mock'
 import { Dispatch, AnyAction } from 'redux'
 import { getInitialState } from 'core/store/state.utils'
 import { AppState } from 'core/store/state.types'

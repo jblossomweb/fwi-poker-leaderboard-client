@@ -1,4 +1,3 @@
-import 'jest-canvas-mock'
 import { Dispatch, AnyAction } from 'redux'
 import { connect } from 'react-redux'
 import withImmutablePropsToJS from 'with-immutable-props-to-js'
