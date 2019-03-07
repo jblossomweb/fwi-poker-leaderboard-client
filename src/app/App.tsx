@@ -1,31 +1,45 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { Route, Redirect, Switch } from 'react-router-dom'
+import { History } from 'history'
+import { Switch } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router/immutable'
+
+import Affix from 'antd/lib/affix'
+import Layout from 'antd/lib/layout'
 
 import { getHistory } from 'core/store/history.utils'
 import { getInitialState } from 'core/store/state.utils'
 import composeStore from 'core/store/compose'
 
+import { mapMenuRoute, mapHiddenRoute, mapRedirect } from 'core/navigation/router.utils'
+
 import rootReducer from 'app/store/rootReducer'
 
-import HomePage from './pages/HomePage'
-import NotFoundPage from './pages/NotFoundPage'
+import { menuRoutes, hiddenRoutes, redirects } from './App.routes'
+import ConnectedMainMenu from './App.menu'
+import styles from './App.module.css'
 
 const store = composeStore(getInitialState(), rootReducer)
+const history: History = getHistory()
 
-const App = () => (
+export default () => (
   <Provider store={store}>
-    <ConnectedRouter history={getHistory()}>
-      <Switch>
-        <Route exact={true} path={`/home`} component={HomePage} />
-        <Route exact={true} path={`/404`} component={NotFoundPage} />
-        <Redirect exact={true} from={``} to={`/home`} />
-        <Redirect exact={true} from={`/`} to={`/home`} />
-        <Redirect exact={true} to={`/404`} />
-      </Switch>
-    </ConnectedRouter>
+    <Affix className={styles.header}>
+      <Layout.Header className={styles.header}>
+        <ConnectedMainMenu
+          history={history}
+          routes={menuRoutes}
+        />
+      </Layout.Header>
+    </Affix>
+    <Layout.Content>
+      <ConnectedRouter history={history}>
+        <Switch>
+          {menuRoutes.map(mapMenuRoute)}
+          {hiddenRoutes.map(mapHiddenRoute)}
+          {redirects.map(mapRedirect)}
+        </Switch>
+      </ConnectedRouter>
+    </Layout.Content>
   </Provider>
 )
-
-export default App
