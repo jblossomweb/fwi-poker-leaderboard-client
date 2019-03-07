@@ -3,7 +3,7 @@ import * as serviceWorker from 'core/serviceWorker'
 import bootstrap from 'core/bootstrap'
 
 import App from 'app/App'
-import 'app/index.css'
+import './index.css'
 
 // bootstrap the app
 bootstrap(App)
