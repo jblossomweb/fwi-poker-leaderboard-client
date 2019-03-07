@@ -13,3 +13,16 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 * package name, app title, app description
 * changelog
 * initial firebase deploy pipeline
+* updates from core
+* players service
+* players redux
+* players components
+* players winnings page
+* home page
+* test coverage
+
+### Removed
+
+* demo components
+* demo page
+* demo redux
