@@ -19,6 +19,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 * players components
 * players winnings page
 * home page
+* routes, menu
 * test coverage
 
 ### Removed
