@@ -14,8 +14,7 @@ Storybook:<br>
 
 # Quick Start
 
-#### mongodb on port 27017
-#### serverless on port 4000
+#### api on port 4000 / mongodb on port 27017
 
 ```
 git clone git@github.com:jblossomweb/fwi-poker-leaderboard-serverless.git
@@ -28,7 +27,7 @@ npm install && npm start
 #### client on port 3000
 
 ```
-git clone git@gitlab.com:jblossomweb/fwi-poker-leaderboard-client.git
+git clone git@github.com:jblossomweb/fwi-poker-leaderboard-client.git
 cd fwi-poker-leaderboard-client
 npm install && npm start
 ```
