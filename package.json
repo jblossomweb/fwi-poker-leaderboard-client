@@ -22,7 +22,9 @@
   "jest": {
     "collectCoverageFrom": [
       "src/app/**/*.{js,jsx,ts,tsx}",
-      "!src/app/**/*.story.{js,jsx,ts,tsx}"
+      "!src/app/**/*.story.{js,jsx,ts,tsx}",
+      "!src/app/**/*.test.{js,jsx,ts,tsx}",
+      "!src/app/config.{js,jsx,ts,tsx}"
     ]
   },
   "browserslist": [
@@ -77,8 +79,10 @@
     "@types/storybook__addon-knobs": "^4.0.1",
     "@types/storybook__react": "^4.0.1",
     "@types/window-or-global": "^1.0.0",
+    "canvas": "^2.3.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.1",
+    "jest-canvas-mock": "^2.0.0-alpha.3",
     "tslint": "^5.12.1",
     "tslint-react": "^3.6.0",
     "typescript": "^3.3.3"
