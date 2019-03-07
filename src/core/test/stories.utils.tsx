@@ -9,19 +9,19 @@ import {
   boolean,
   number,
   object,
+  select,
 } from '@storybook/addon-knobs/react'
 import { checkA11y } from '@storybook/addon-a11y'
 
 import { StoryBuilder } from './stories.types'
 import { Scenarios } from './scenarios.types'
 
-import 'app/index.css'
-
 const knobs = {
   text,
   boolean,
   number,
   object,
+  select,
 }
 
 export const storyBuilder: StoryBuilder = (

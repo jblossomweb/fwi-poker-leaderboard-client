@@ -1,3 +1,19 @@
+export type StringSortUtil = (
+  a: string,
+  b: string,
+) => number
+
+export type NumberSortUtil = (
+  a: number,
+  b: number,
+) => number
+
+export interface SortUtils {
+  sortAlpha: StringSortUtil,
+  sortBySurname: StringSortUtil,
+  sortNumeric: NumberSortUtil,
+}
+
 export const sortAlpha = (
   a: string,
   b: string,
@@ -37,4 +53,10 @@ export const sortNumeric = (
     return 1
   }
   return 0
+}
+
+export default {
+  sortAlpha,
+  sortBySurname,
+  sortNumeric,
 }

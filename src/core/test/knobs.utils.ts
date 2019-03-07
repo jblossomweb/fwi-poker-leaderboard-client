@@ -13,6 +13,7 @@ export const mockKnobs: KnobsInterface = {
   number: (_name: string, val: number) => val,
   boolean: (_name: string, val: boolean) => val,
   object: (_name: string, val: object) => val,
+  select: (_name: string, _options: any, val: any) => val,
 }
 
 export const injectKnobs = (

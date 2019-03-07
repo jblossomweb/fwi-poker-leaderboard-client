@@ -1,10 +1,3 @@
-import {
-  Scenario,
-  Scenarios,
-  MountedScenario,
-  MountedScenarios,
-} from './scenarios.types'
-
 import React from 'react'
 import mapValues from 'lodash/mapValues'
 import Adapter from 'enzyme-adapter-react-16'
@@ -14,6 +7,13 @@ import {
   mount,
   shallow,
 } from 'enzyme'
+
+import {
+  Scenario,
+  Scenarios,
+  MountedScenario,
+  MountedScenarios,
+} from './scenarios.types'
 
 import {
   mockKnobs,
@@ -45,13 +45,17 @@ export const shallowMountScenarios = (
 
 export const getTestScenes = (
   mountedScenarios: MountedScenarios,
-  mainComponent: (props: any) => JSX.Element,
+  mainComponent: (
+    ((props: any) => JSX.Element | null) |
+    React.Component |
+    React.ComponentClass<any>
+  ),
   getElements: (mountedComponent: any) => any,
 ) => mapValues(mountedScenarios, (
-  pointer: MountedScenario,
+  wrapper: MountedScenario,
 ) => {
-  const component = pointer.find(mainComponent)
+  const component = wrapper.find(mainComponent)
   const props = component.props()
   const elements = getElements(component)
-  return { component, props, elements }
+  return { component, props, elements, wrapper }
 })

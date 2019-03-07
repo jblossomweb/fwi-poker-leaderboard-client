@@ -3,4 +3,5 @@ export interface KnobsInterface {
   number: (name: string, val: number) => number,
   boolean: (name: string, val: boolean) => boolean,
   object: (name: string, val: any) => any,
+  select: (name: string, options: any, val: any) => any,
 }
