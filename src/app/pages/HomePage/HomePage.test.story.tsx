@@ -1,29 +1,27 @@
 import React from 'react'
+import 'antd/dist/antd.css'
+import 'app/../index.css'
 import { KnobsInterface } from 'core/test/knobs.types'
 import { storyBuilder } from 'core/test/stories.utils'
 import { Scenarios } from 'core/test/scenarios.types'
-
-import { countries, country } from 'app/store/sample/sample.test.mocks'
+import { players, error } from 'app/store/players/mocks'
 
 import HomePage, { Props } from './HomePage'
 
-let mockNumber: number = 0
-
 export const mockProps: Props = {
-  sampleNumber: mockNumber,
-  incrementSampleNumber: () => { mockNumber++ },
-  decrementSampleNumber: () => { mockNumber-- },
-  setSampleNumber: (n: number) => { mockNumber = n },
-  fetchSampleCountries: () => {
+  fetchingPlayers: false,
+  fetchPlayersError: null,
+  totalWinnings: 6000,
+  topPlayersBarData: players.slice(0, 3),
+  countryWinningsPieData: [
+    {
+      country: 'US',
+      winnings: 6000,
+    },
+  ],
+  fetchPlayers: () => {
     //
   },
-  fetchSampleCountry: (code: string) => {
-    //
-  },
-  sampleCountries: countries,
-  sampleCountry: country,
-  sampleThunking: false,
-  sampleError: null,
 }
 
 export const scenarios: Scenarios = {
@@ -32,17 +30,31 @@ export const scenarios: Scenarios = {
       {...mockProps}
     />
   ),
+  'fetching': () => (
+    <HomePage
+      {...mockProps}
+      topPlayersBarData={[]}
+      fetchingPlayers={true}
+    />
+  ),
+  'fetch error': () => (
+    <HomePage
+      {...mockProps}
+      topPlayersBarData={[]}
+      fetchPlayersError={error}
+    />
+  ),
   'knobs': (
     knobs: KnobsInterface,
     props: Props = mockProps,
   ) => (
     <HomePage
       {...mockProps}
-      sampleNumber={knobs.number('sampleNumber', props.sampleNumber)}
-      sampleCountries={knobs.object('sampleCountries', props.sampleCountries)}
-      sampleCountry={knobs.number('sampleCountry', props.sampleCountry)}
-      sampleThunking={knobs.boolean('sampleThunking', props.sampleThunking)}
-      sampleError={knobs.object('sampleError', props.sampleError)}
+      fetchingPlayers={knobs.boolean('fetchingPlayers', props.fetchingPlayers)}
+      fetchPlayersError={knobs.object('fetchPlayersError', props.fetchPlayersError)}
+      totalWinnings={knobs.number('totalWinnings', props.totalWinnings || 0)}
+      topPlayersBarData={knobs.object('topPlayersBarData', props.topPlayersBarData)}
+      countryWinningsPieData={knobs.object('countryWinningsPieData', props.countryWinningsPieData)}
     />
   ),
 }

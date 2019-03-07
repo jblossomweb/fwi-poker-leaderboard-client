@@ -1,14 +1,14 @@
+import 'jest-canvas-mock'
 import { Dispatch, AnyAction } from 'redux'
 import { connect } from 'react-redux'
 import withImmutablePropsToJS from 'with-immutable-props-to-js'
 
 import { AppState } from 'core/store/state.types'
+import { PlayersServiceInterface } from 'app/services/players/types'
+import LivePlayersService from 'app/services/players/service'
 
-import sampleService from 'app/services/sample/sample.service'
-import { SampleServiceInterface } from 'app/services/sample/sample.service.types'
-
-import selectors from 'app/store/sample/sample.selectors'
-import actions from 'app/store/sample/sample.actions'
+import playerSelectors from 'app/store/players/selectors'
+import playerActions from 'app/store/players/action.creators'
 
 import HomePage, {
   DispatchProps,
@@ -17,26 +17,24 @@ import HomePage, {
 export const mapStateToProps = (
   state: AppState,
 ) => ({
-  sampleNumber: selectors.getSampleNumber(state),
-  sampleThunking: selectors.getSampleThunking(state),
-  sampleCountries: selectors.getSampleCountries(state),
-  sampleCountry: selectors.getSampleCountry(state),
-  sampleError: selectors.getSampleError(state),
+  fetchingPlayers: playerSelectors.getFetchingPlayers(state),
+  fetchPlayersError: playerSelectors.getFetchPlayersError(state),
+  totalWinnings: playerSelectors.getTotalWinnings(state),
+  topPlayersBarData: playerSelectors.getTopPlayersBarData(state),
+  countryWinningsPieData: playerSelectors.getCountryWinningsPieData(state),
 })
 
 export const mapDispatchToProps = (
-  service: SampleServiceInterface,
+  playersService: PlayersServiceInterface,
 ) => (
   dispatch: Dispatch<AnyAction>,
 ): DispatchProps => ({
-  incrementSampleNumber: () => dispatch(actions.incrementSampleNumber()),
-  decrementSampleNumber: () => dispatch(actions.decrementSampleNumber()),
-  setSampleNumber: (value: number) => dispatch(actions.setSampleNumber(value)),
-  fetchSampleCountries: () => dispatch(actions.fetchSampleCountries(service)(dispatch)),
-  fetchSampleCountry: (code: string) => dispatch(actions.fetchSampleCountry(code, service)(dispatch)),
+  fetchPlayers: () => dispatch(
+    playerActions.fetchPlayers(playersService)(dispatch)
+  ),
 })
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps(sampleService),
+  mapDispatchToProps(LivePlayersService),
 )(withImmutablePropsToJS(HomePage))

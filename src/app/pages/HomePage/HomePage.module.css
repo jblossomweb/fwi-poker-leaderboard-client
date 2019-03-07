@@ -1,21 +1,34 @@
 .wrapper {
-  text-align: center;
+  padding: 2vmin;
 }
 
-.header {
-  background-color: #282c34;
-  min-height: 100vh;
+.title {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title span .titleIcon{
+  margin-right: 1vmin;
+}
+
+.charts {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
-  font-size: calc(4px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
+  height: 100%;
 }
 
-.samples {
-  display: flex;
-  flex-direction: row;
-  align-items: top;
-  justify-content: center;
+.chart {
+  margin: auto;
+}
+
+@media only screen and (max-width: 1336px) {
+  .chart {
+    width: 100%;
+    margin-top: 24px;
+  }
+  .chart:first {
+    margin-top: 0px;
+  }
 }

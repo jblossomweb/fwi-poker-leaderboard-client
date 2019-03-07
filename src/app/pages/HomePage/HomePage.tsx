@@ -1,103 +1,124 @@
 import React from 'react'
-
-import SampleCounter from 'app/components/SampleCounter'
-import SampleCountries from 'app/components/SampleCountries'
-import SampleLinks from 'app/components/SampleLinks'
-import SampleLogos from 'app/components/SampleLogos'
-
+import { Player } from 'app/store/players/types'
+import { Icon, Card, message } from 'antd'
 import styles from './HomePage.module.css'
 
+import TopPlayersBarChart from 'app/components/TopPlayersBarChart'
+import CountryWinningsPieChart from 'app/components/CountryWinningsPieChart'
+
 export interface StateProps {
-  sampleNumber: number,
-  sampleThunking: boolean,
-  sampleError?: Error | null,
-  sampleCountries: any[],
-  sampleCountry: any,
+  fetchingPlayers: boolean,
+  fetchPlayersError: Error | null,
+  totalWinnings: number | null,
+  topPlayersBarData: Player[],
+  countryWinningsPieData: {
+    country: Player['country'],
+    winnings: Player['winnings'],
+  }[],
 }
 
 export interface DispatchProps {
-  incrementSampleNumber: () => void,
-  decrementSampleNumber: () => void,
-  setSampleNumber: (value: number) => void,
-  fetchSampleCountries: () => void,
-  fetchSampleCountry: (code: string) => void,
+  fetchPlayers: () => void,
 }
 
 export type Props = StateProps & DispatchProps
 
-const HomePage = (
-  props: Props,
-) => (
-  <div className={styles.wrapper}>
-    <header className={styles.header}>
-      <SampleLogos
-        react={true}
-        redux={true}
-        graphql={true}
-        immutable={true}
-        storybook={true}
-        spin={true}
-      />
-      <p>
-        Edit <code>src/app/pages/Home.tsx</code> and save to reload.
-      </p>
-      <div className={styles.samples}>
-        <SampleCounter
-          value={props.sampleNumber}
-          increment={props.incrementSampleNumber}
-          decrement={props.decrementSampleNumber}
-          setTo={props.setSampleNumber}
-        />
-        <SampleCountries
-          countries={props.sampleCountries}
-          country={props.sampleCountry}
-          getCountries={props.fetchSampleCountries}
-          selectCountry={props.fetchSampleCountry}
-          thunking={props.sampleThunking}
-          error={props.sampleError}
-        />
+const inlineStyles: {[key: string]: React.CSSProperties} = {
+  cardHead: {
+    backgroundColor: '#011528',
+    color: `#fff`,
+  }
+}
+
+class HomePage extends React.Component<Props> {
+  constructor(props: Props) {
+    super(props)
+    message.config({ maxCount: 1 })
+    this.messageError = this.messageError.bind(this)
+    this.messageDestroy = this.messageDestroy.bind(this)
+  }
+
+  messageError(error: string) {
+    message.error(error)
+  }
+
+  messageDestroy() {
+    message.destroy()
+  }
+
+  componentDidMount() {
+    const { topPlayersBarData, fetchPlayers } = this.props
+    if (!topPlayersBarData || !topPlayersBarData.length) {
+      fetchPlayers()
+    }
+  }
+  componentDidUpdate() {
+    const {
+      fetchPlayersError,
+    } = this.props
+    if (fetchPlayersError) {
+      this.messageError(`could not fetch players: ${fetchPlayersError.message}`)
+    } else {
+      this.messageDestroy()
+    }
+  }
+  render() {
+    const {
+      totalWinnings,
+      topPlayersBarData,
+      countryWinningsPieData,
+      fetchingPlayers,
+      fetchPlayersError,
+    } = this.props
+    return (
+      <div className={styles.wrapper}>
+        <h2>
+          <span className={styles.title}>
+            <span>
+              <Icon
+                className={styles.titleIcon}
+                type={`home`}
+                theme={`twoTone`}
+              />
+              <span>
+                Dashboard {
+                  totalWinnings ?
+                  `(Total Winnings: $${totalWinnings.toLocaleString()})` : 
+                  null
+                }
+              </span>
+            </span>
+          </span>
+        </h2>
+        <div className={styles.charts}>
+          <div className={styles.chart}>
+            <Card 
+              title={`🏆 Top 3 Players`}
+              headStyle={inlineStyles.cardHead}
+            >
+              <TopPlayersBarChart
+                fetchingPlayers={fetchingPlayers}
+                fetchPlayersError={fetchPlayersError}
+                topPlayersBarData={topPlayersBarData}
+              />
+            </Card>
+          </div>
+          <div className={styles.chart}>
+            <Card
+              title={`🌎 Country Winnings Breakdown`}
+              headStyle={inlineStyles.cardHead}
+            >
+              <CountryWinningsPieChart
+                fetchingPlayers={fetchingPlayers}
+                fetchPlayersError={fetchPlayersError}
+                countryWinningsPieData={countryWinningsPieData}
+              />
+            </Card>
+          </div>
+        </div>
       </div>
-      <SampleLinks
-        links={[
-          {
-            title: 'React',
-            href: 'https://reactjs.org/',
-            external: true,
-          },
-          {
-            title: 'Redux',
-            href: 'https://redux.js.org/',
-            external: true,
-          },
-          {
-            title: 'GraphQL',
-            href: 'https://graphql.org/',
-            external: true,
-          },
-          {
-            title: 'Immutable',
-            href: 'https://immutable-js.github.io/immutable-js/',
-            external: true,
-          },
-          {
-            title: 'Reselect',
-            href: 'https://github.com/reduxjs/reselect',
-            external: true,
-          },
-          {
-            title: 'Thunk',
-            href: 'https://github.com/reduxjs/redux-thunk',
-            external: true,
-          },
-          {
-            title: 'Storybook',
-            href: 'https://storybook.js.org/',
-            external: true,
-          },
-        ]}
-      />
-    </header>
-  </div>
-)
+    )
+  }
+}
 
 export default HomePage
