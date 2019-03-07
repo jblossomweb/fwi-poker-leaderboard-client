@@ -1,9 +1,17 @@
-This project was bootstrapped with a work-in-progress [Redux Framework](https://gitlab.com/jblossomweb/crats-redux-framework)
+This project was bootstrapped with a work-in-progress [Redux Framework](https://gitlab.com/jblossomweb/crats-redux-framework).<br>
 [Redux Framework](https://gitlab.com/jblossomweb/crats-redux-framework) was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+#### Demo Deployments:
+
+Lambda API:<br>
+[https://2q8uy6j06j.execute-api.us-east-1.amazonaws.com/dev/players](https://2q8uy6j06j.execute-api.us-east-1.amazonaws.com/dev/players)<br>
+
+Client:<br>
+[https://fwi-poker-leaderboard.firebaseapp.com/](https://fwi-poker-leaderboard.firebaseapp.com/)<br>
 
 # Quick Start
 
-#### server on port 4000
+#### serverless on port 4000
 
 ```
 git clone git@github.com:jblossomweb/fwi-poker-leaderboard-serverless.git
